@@ -47,9 +47,7 @@
             android:layout_above="@+id/passwordField"
             android:layout_centerHorizontal="true"
             android:ems="10"
-            android:hint="Username"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white" />
+            android:hint="Username" />
 
         <EditText
             android:id="@+id/passwordField"
@@ -59,9 +57,7 @@
             android:layout_centerHorizontal="true"
             android:ems="10"
             android:hint="Password"
-            android:inputType="textPassword"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white" />
+            android:inputType="textPassword" />
 
         <Button
             android:id="@+id/registerButton"

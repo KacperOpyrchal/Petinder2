@@ -3,6 +3,7 @@ package com.example.kacperopyrchal.petinder.biometric;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetDialog;
 import android.view.View;
 import android.widget.Button;
@@ -11,7 +12,6 @@ import android.widget.TextView;
 
 import com.example.kacperopyrchal.petinder.R;
 
-import androidx.annotation.NonNull;
 
 public class BiometricDialogV23 extends BottomSheetDialog implements View.OnClickListener {
 

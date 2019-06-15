@@ -2,9 +2,7 @@ package com.example.kacperopyrchal.petinder.biometric;
 
 import android.hardware.biometrics.BiometricPrompt;
 import android.os.Build;
-
-import androidx.annotation.RequiresApi;
-
+import android.support.annotation.RequiresApi;
 
 @RequiresApi(api = Build.VERSION_CODES.P)
 public class BiometricCallbackV28 extends BiometricPrompt.AuthenticationCallback {

@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import com.example.kacperopyrchal.petinder.DependencyInjector
 import com.example.kacperopyrchal.petinder.R
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
