@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTint="@color/black"
+    android:backgroundTintMode="multiply"
+    android:background="@color/black"
+    tools:context=".details.DetailsFragment">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:backgroundTint="@color/black"
+    android:backgroundTintMode="multiply"
+        android:scaleType="fitCenter"
+        android:src="@drawable/bonifacy"
+        android:text="@string/hello_blank_fragment" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="20dp"
+        android:gravity="bottom"
+        android:weightSum="7">
+
+        <Button
+            android:id="@+id/lubieButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="FAJNY KOCUR"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/opcjeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="O" />
+
+        <Button
+            android:id="@+id/nielubieButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="NIE LUBIE"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+</FrameLayout>
