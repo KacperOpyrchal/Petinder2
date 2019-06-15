@@ -1,13 +1,7 @@
 package com.example.kacperopyrchal.petinder.login
 
-import android.annotation.TargetApi
-import android.content.DialogInterface
 import android.content.Intent
-import android.hardware.biometrics.BiometricPrompt
-import android.os.Build
 import android.os.Bundle
-import android.security.keystore.KeyGenParameterSpec
-import android.security.keystore.KeyProperties
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,13 +12,7 @@ import com.example.kacperopyrchal.petinder.adjustColor
 import com.example.kacperopyrchal.petinder.details.DetailsActivity
 import com.example.kacperopyrchal.petinder.registration.RegistrationActivity
 import kotlinx.android.synthetic.main.fragment_login.*
-import java.io.IOException
-import java.security.*
-import java.security.cert.CertificateException
-import javax.crypto.KeyGenerator
 import javax.inject.Inject
-
-const val KEY_NAME = "key_name"
 
 class LoginFragment : Fragment(), LoginView {
 
