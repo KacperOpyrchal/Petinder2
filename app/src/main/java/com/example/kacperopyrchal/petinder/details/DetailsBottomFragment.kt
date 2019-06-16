@@ -41,6 +41,9 @@ class DetailsBottomFragment : BottomSheetDialogFragment(), DetailsBottomView {
         phoneOption.setOnClickListener { presenter.onPhoneCallClick(this) }
         smsOption.setOnClickListener { presenter.onSmsClick(this) }
         gpsOption.setOnClickListener { presenter.onLocalizationClick(this) }
+        videoOption.setOnClickListener { presenter.onVideoClicked(this) }
+        musicOption.setOnClickListener { presenter.onMusicClicked(this) }
+        emailOption.setOnClickListener { presenter.onEmailClicked(this) }
 
     }
 
@@ -66,5 +69,25 @@ class DetailsBottomFragment : BottomSheetDialogFragment(), DetailsBottomView {
 
     override fun openGps() {
         // no-op
+    }
+
+    override fun openEmail(email: String) {
+        val emailIntent = Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                "mailto", email, null))
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Tratata")
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "lala :O")
+        startActivity(Intent.createChooser(emailIntent, "Send email..."))
+    }
+
+    override fun openVideo(url: String) {
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.setDataAndType(Uri.parse(url), "video/mp4")
+        startActivity(intent)
+    }
+
+    override fun openMusic(url: String) {
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.setDataAndType(Uri.parse(url), "audio/mp3")
+        startActivity(intent)
     }
 }

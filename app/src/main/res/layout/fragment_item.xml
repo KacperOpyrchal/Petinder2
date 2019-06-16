@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:weightSum="8">
+
+    <ImageView
+        android:id="@+id/item_icon"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="4"
+        android:layout_gravity="center"
+        android:layout_marginEnd="4dp"
+        tools:src="@drawable/bonifacy" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/item_name"
+            style="@style/itemTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="dupa"
+            android:textAppearance="?attr/textAppearanceListItem" />
+
+        <TextView
+            android:id="@+id/item_surname"
+            style="@style/itemTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="jaja"
+            android:textAppearance="?attr/textAppearanceListItem" />
+
+        <TextView
+            android:id="@+id/item_email"
+            style="@style/itemTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="jaja"
+            android:textAppearance="?attr/textAppearanceListItem" />
+
+        <TextView
+            android:id="@+id/item_phone"
+            style="@style/itemTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="jaja"
+            android:textAppearance="?attr/textAppearanceListItem" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/item_details"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:text="O" />
+
+</LinearLayout>
