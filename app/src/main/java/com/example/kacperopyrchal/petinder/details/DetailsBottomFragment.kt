@@ -12,9 +12,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.kacperopyrchal.petinder.DependencyInjector
+import com.example.kacperopyrchal.petinder.GpsActivity
 import com.example.kacperopyrchal.petinder.R
 import kotlinx.android.synthetic.main.fragment_details_bottom.*
 import javax.inject.Inject
+
+const val POINT_X = "POINT_X"
+const val POINT_Y = "POINT_Y"
 
 class DetailsBottomFragment : BottomSheetDialogFragment(), DetailsBottomView {
 
@@ -68,7 +72,10 @@ class DetailsBottomFragment : BottomSheetDialogFragment(), DetailsBottomView {
     }
 
     override fun openGps() {
-        // no-op
+        val intent = Intent(activity, GpsActivity::class.java)
+        intent.putExtra(POINT_X, -34.0)
+        intent.putExtra(POINT_Y, 151.0)
+        startActivity(intent)
     }
 
     override fun openEmail(email: String) {

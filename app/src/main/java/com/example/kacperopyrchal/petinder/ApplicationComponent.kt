@@ -4,6 +4,7 @@ import com.example.kacperopyrchal.petinder.contacts.ContactsListFragment
 import com.example.kacperopyrchal.petinder.details.DetailsBottomFragment
 import com.example.kacperopyrchal.petinder.details.DetailsFragment
 import com.example.kacperopyrchal.petinder.login.LoginFragment
+import com.example.kacperopyrchal.petinder.profile.ProfileFragment
 import com.example.kacperopyrchal.petinder.registration.RegistrationFragment
 import dagger.Component
 import javax.inject.Singleton
@@ -18,4 +19,5 @@ interface ApplicationComponent {
     fun inject(fragment: LoginFragment)
     fun inject(fragment: RegistrationFragment)
     fun inject(fragment: ContactsListFragment)
+    fun inject(fragment: ProfileFragment)
 }

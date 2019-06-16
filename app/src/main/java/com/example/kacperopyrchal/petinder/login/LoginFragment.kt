@@ -77,8 +77,8 @@ class LoginFragment : Fragment(), LoginView, BiometricCallback {
     override fun openHomeScreen(username: String, password: String) {
         val prefs = activity?.getSharedPreferences("pref", Context.MODE_PRIVATE)
         prefs?.edit()
-                ?.putString("username", username)
-                ?.putString("password", password)
+                ?.putString(USERNAME, username)
+                ?.putString(PASSWORD, password)
                 ?.apply()
 
         val intent = Intent(activity, DetailsActivity::class.java)

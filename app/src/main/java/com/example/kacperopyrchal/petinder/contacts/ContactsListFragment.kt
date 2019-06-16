@@ -1,5 +1,7 @@
 package com.example.kacperopyrchal.petinder.contacts
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
@@ -9,6 +11,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.kacperopyrchal.petinder.DependencyInjector
 import com.example.kacperopyrchal.petinder.R
+import com.example.kacperopyrchal.petinder.login.USERNAME
+import com.example.kacperopyrchal.petinder.profile.LOCAL_NAME
+import com.example.kacperopyrchal.petinder.profile.ProfileActivity
 import kotlinx.android.synthetic.main.fragment_item_list.*
 import javax.inject.Inject
 
@@ -20,8 +25,10 @@ class ContactsListFragment : Fragment(), ContactsListView {
     private var columnCount = 1
 
     private val listener = object : OnListFragmentInteractionListener {
-        override fun onListFragmentInteraction(item: Contact?) {
-            //TODO on click
+        override fun onListFragmentInteraction(item: SubContact?) {
+            val intent = Intent(activity, ProfileActivity::class.java)
+            intent.putExtra(LOCAL_NAME, item?.name)
+            startActivity(intent)
         }
     }
 
@@ -43,20 +50,22 @@ class ContactsListFragment : Fragment(), ContactsListView {
 
         DependencyInjector.applicationComponent()!!.inject(this)
 
+        val prefs = activity!!.getSharedPreferences("pref", Context.MODE_PRIVATE)
+
         list.layoutManager = when {
             columnCount <= 1 -> LinearLayoutManager(context)
             else -> GridLayoutManager(context, columnCount)
         }
-        presenter.onViewCreated(this)
+        presenter.onViewCreated(this, prefs.getString(USERNAME, ""))
     }
 
-    override fun setItems(items: List<Contact>) {
+    override fun setItems(items: List<SubContact>) {
         list.adapter = MyItemRecyclerViewAdapter(items, listener, context!!)
     }
 
     interface OnListFragmentInteractionListener {
 
-        fun onListFragmentInteraction(item: Contact?)
+        fun onListFragmentInteraction(item: SubContact?)
     }
 
     companion object {

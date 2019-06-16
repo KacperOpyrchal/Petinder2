@@ -12,11 +12,20 @@ query Pet($name: String!) {
     preferredSpecies
     description
     phone
+    image
+    location {
+      x
+      y
+      city
+    }
     inRelations {
       inStatus
       outStatus
       from {
         name
+        surname
+        email
+        phone
         image
       }
     }
@@ -25,6 +34,9 @@ query Pet($name: String!) {
       inStatus
       to {
         name
+        surname
+        email
+        phone
         image
       }
     }

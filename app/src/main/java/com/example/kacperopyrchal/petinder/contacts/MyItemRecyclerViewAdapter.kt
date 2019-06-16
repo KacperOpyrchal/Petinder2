@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.fragment_item.view.*
 
 
 class MyItemRecyclerViewAdapter(
-        private val mValues: List<Contact>,
+        private val mValues: List<SubContact>,
         private val mListener: OnListFragmentInteractionListener?,
         private val context: Context)
     : RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder>() {
@@ -26,7 +26,7 @@ class MyItemRecyclerViewAdapter(
 
     init {
         mOnClickListener = View.OnClickListener { v ->
-            val item = v.tag as Contact
+            val item = v.tag as SubContact
 
             mListener?.onListFragmentInteraction(item)
         }

@@ -1,5 +1,6 @@
 package com.example.kacperopyrchal.petinder.details
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -10,6 +11,7 @@ import com.example.kacperopyrchal.petinder.R
 import com.example.kacperopyrchal.petinder.contacts.ContactsListFragment
 import com.example.kacperopyrchal.petinder.details.PagerFragment.ContactList
 import com.example.kacperopyrchal.petinder.details.PagerFragment.Profile
+import com.example.kacperopyrchal.petinder.login.USERNAME
 import com.example.kacperopyrchal.petinder.profile.ProfileFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -22,17 +24,20 @@ class DetailsActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
 
+        val prefs = getSharedPreferences("pref", Context.MODE_PRIVATE)
+
         supportActionBar?.hide()
         sliding_tabs.setupWithViewPager(viewPager)
-        viewPager.adapter = MainPagerAdapter(supportFragmentManager)
+        viewPager.adapter = MainPagerAdapter(supportFragmentManager, prefs.getString(USERNAME, ""))
+        viewPager.offscreenPageLimit = 5
     }
 }
 
-class MainPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
+class MainPagerAdapter(fragmentManager: FragmentManager, private val name: String) : FragmentPagerAdapter(fragmentManager) {
 
     private val fragments = arrayOf(Profile, PagerFragment.Details, ContactList)
 
-    override fun getItem(position: Int): Fragment = fragments[position].fragment()
+    override fun getItem(position: Int): Fragment = fragments[position].fragment(name)
 
     override fun getCount(): Int = fragments.size
 
@@ -42,12 +47,12 @@ class MainPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(
 
 }
 
-sealed class PagerFragment(val fragment: () -> Fragment, val title: String) {
+sealed class PagerFragment(val fragment: (String) -> Fragment, val title: String) {
 
     object Details : PagerFragment({ DetailsFragment.newInstance() }, "Explore")
 
     object ContactList : PagerFragment({ ContactsListFragment.newInstance(1) }, "Contacts")
 
-    object Profile : PagerFragment({ ProfileFragment.newInstance() }, "Profile")
+    object Profile : PagerFragment({ ProfileFragment.newInstance(it) }, "Profile")
 
 }
