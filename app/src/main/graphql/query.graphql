@@ -1,0 +1,56 @@
+query Pet($name: String!) {
+  Pet(name: $name) {
+    name
+    surname
+    password
+    email
+    music
+    video
+    gender
+    species
+    preferredGender
+    preferredSpecies
+    description
+    phone
+    inRelations {
+      inStatus
+      outStatus
+      from {
+        name
+        image
+      }
+    }
+    outRelations {
+      outStatus
+      inStatus
+      to {
+        name
+        image
+      }
+    }
+  }
+}
+
+mutation RegisterPet(
+  $name: String!,
+  $surname: String!,
+  $password: String!,
+  $species: Species!,
+  $gender: Gender!,
+  $preferredSpecies: Species,
+  $preferredGender: Gender,
+  $email: String
+) {
+  createPet(
+    name: $name,
+    surname: $surname,
+    password: $password,
+    species: $species,
+    gender: $gender,
+    preferredSpecies: $preferredSpecies,
+    preferredGender: $preferredGender,
+    email: $email
+  ) {
+    name
+  }
+}

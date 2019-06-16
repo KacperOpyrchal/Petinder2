@@ -1,22 +1,33 @@
 package com.example.kacperopyrchal.petinder.login
 
-import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposables
 import io.reactivex.schedulers.Schedulers
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-class LoginPresenter @Inject constructor() {
+class LoginPresenter @Inject constructor(
+        private val loginInteractor: LoginInteractor
+) {
 
-    fun onLoginClick(view: LoginView) {
+    private var disposable = Disposables.disposed()
+
+    fun onLoginClick(view: LoginView, username: String, password: String) {
         view.setProgress(true)
-        Observable.timer(1, TimeUnit.SECONDS)
+
+        disposable = loginInteractor.loginSubject
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     view.setProgress(false)
-                    view.openHomeScreen()
+                    if (it.isNotBlank() && password == it) {
+                        view.openHomeScreen(username, password)
+                    } else {
+                        view.showLoginError()
+                    }
+                    disposable.dispose()
                 }
+
+        loginInteractor.login(username)
     }
 
     fun onRegisterClick(view: LoginView) {
@@ -26,7 +37,8 @@ class LoginPresenter @Inject constructor() {
 }
 
 interface LoginView {
-    fun openHomeScreen()
+    fun openHomeScreen(username: String, password: String)
     fun openRegistrationScreen()
     fun setProgress(visible: Boolean)
+    fun showLoginError()
 }

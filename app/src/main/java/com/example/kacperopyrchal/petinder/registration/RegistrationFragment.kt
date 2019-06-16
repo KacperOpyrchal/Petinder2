@@ -11,9 +11,9 @@ import com.example.kacperopyrchal.petinder.DependencyInjector
 import com.example.kacperopyrchal.petinder.R
 import com.example.kacperopyrchal.petinder.adjustColor
 import com.example.kacperopyrchal.petinder.details.DetailsActivity
-import com.example.kacperopyrchal.petinder.enums.Gender
-import com.example.kacperopyrchal.petinder.enums.Species
 import kotlinx.android.synthetic.main.fragment_registration.*
+import type.Gender
+import type.Species
 import javax.inject.Inject
 
 class RegistrationFragment : Fragment(), RegisterView {
@@ -40,9 +40,24 @@ class RegistrationFragment : Fragment(), RegisterView {
         preferredSpeciesField.adapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, Species.values())
 
         registerButton.setOnClickListener {
-            presenter.onRegisterClick(this)
+            presenter.onRegisterClick(
+                    view = this,
+                    username = usernameField.text.toString(),
+                    password = passwordField.text.toString(),
+                    email = emailField.text.toString(),
+                    surname = surnameField.text.toString(),
+                    yourSpecies = yourSpeciesField.selectedItem.species(),
+                    preferredSpecies = preferredSpeciesField.selectedItem.species(),
+                    yourGender = yourGenderField.selectedItem.gender(),
+                    preferredGender = preferredGenderField.selectedItem.gender()
+
+            )
         }
     }
+
+    fun Any.species() = Species.valueOf((this as? String) ?: "Cat")
+
+    fun Any.gender() = Gender.valueOf((this as? String) ?: "None")
 
     override fun setProgress(visible: Boolean) {
         progressBar.visibility = if (visible) View.VISIBLE else View.GONE

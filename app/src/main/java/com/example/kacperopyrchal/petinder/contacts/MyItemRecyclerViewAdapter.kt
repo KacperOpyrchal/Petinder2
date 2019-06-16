@@ -1,6 +1,7 @@
 package com.example.kacperopyrchal.petinder.contacts
 
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -37,11 +38,11 @@ class MyItemRecyclerViewAdapter(
         return ViewHolder(view)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = mValues[position]
         holder.apply {
-            nameView.text = item.name
-            surnameView.text = item.surname
+            nameView.text = "${item.name} ${item.surname}"
             emailView.text = item.email
             phoneView.text = item.phone
             Picasso.with(context).load(item.image).into(iconView)
@@ -62,7 +63,6 @@ class MyItemRecyclerViewAdapter(
     inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
         val nameView: TextView = view.item_name
-        val surnameView: TextView = view.item_surname
         val iconView: ImageView = view.item_icon
         val detailsView: Button = view.item_details
         val emailView: TextView = view.item_email

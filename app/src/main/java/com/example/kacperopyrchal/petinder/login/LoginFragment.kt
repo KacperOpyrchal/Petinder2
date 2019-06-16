@@ -1,12 +1,13 @@
 package com.example.kacperopyrchal.petinder.login
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.text.SpannableStringBuilder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
 import com.example.kacperopyrchal.petinder.DependencyInjector
 import com.example.kacperopyrchal.petinder.R
@@ -18,12 +19,14 @@ import com.example.kacperopyrchal.petinder.registration.RegistrationActivity
 import kotlinx.android.synthetic.main.fragment_login.*
 import javax.inject.Inject
 
+const val PASSWORD = "password"
+const val USERNAME = "username"
+
 class LoginFragment : Fragment(), LoginView, BiometricCallback {
 
     @Inject
     lateinit var presenter: LoginPresenter
 
-    private var button: Button? = null
     private var biometricManager: BiometricManager? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -40,7 +43,7 @@ class LoginFragment : Fragment(), LoginView, BiometricCallback {
         registerButton.adjustColor(R.color.blue)
 
         loginButton.setOnClickListener {
-            presenter.onLoginClick(this)
+            presenter.onLoginClick(this, usernameField.text.toString(), passwordField.text.toString())
         }
 
         registerButton.setOnClickListener {
@@ -66,8 +69,20 @@ class LoginFragment : Fragment(), LoginView, BiometricCallback {
         progressBar.visibility = if (visible) View.VISIBLE else View.GONE
     }
 
-    override fun openHomeScreen() {
+    override fun showLoginError() {
+        Toast.makeText(context, "Login error!", Toast.LENGTH_LONG).show()
+        passwordField.text = SpannableStringBuilder("")
+    }
+
+    override fun openHomeScreen(username: String, password: String) {
+        val prefs = activity?.getSharedPreferences("pref", Context.MODE_PRIVATE)
+        prefs?.edit()
+                ?.putString("username", username)
+                ?.putString("password", password)
+                ?.apply()
+
         val intent = Intent(activity, DetailsActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
     }
 
@@ -107,8 +122,12 @@ class LoginFragment : Fragment(), LoginView, BiometricCallback {
     }
 
     override fun onAuthenticationSuccessful() {
+        val prefs = activity?.getSharedPreferences("pref", Context.MODE_PRIVATE)
+        val username = prefs?.getString(USERNAME, "")
+        val password = prefs?.getString(PASSWORD, "")
+
         Toast.makeText(context, getString(R.string.biometric_success), Toast.LENGTH_LONG).show()
-        presenter.onLoginClick(this)
+        presenter.onLoginClick(this, username!!, password!!)
     }
 
     override fun onAuthenticationHelp(helpCode: Int, helpString: CharSequence) {
