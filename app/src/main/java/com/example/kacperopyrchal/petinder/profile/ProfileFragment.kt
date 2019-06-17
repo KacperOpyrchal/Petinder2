@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.fragment_profile.*
 import javax.inject.Inject
 
 const val LOCAL_NAME = "local_name"
+const val SHOW_MENU = "show_menu"
 
 class ProfileFragment : Fragment() {
 
@@ -49,6 +50,12 @@ class ProfileFragment : Fragment() {
 
         DependencyInjector.applicationComponent()!!.inject(this)
 
+        if (arguments?.getBoolean(SHOW_MENU) == false) {
+            editButton.visibility = View.GONE
+            logoutButton.visibility = View.GONE
+            settingsButton.visibility = View.GONE
+        }
+
         presenter.onCreate(this, arguments?.getString(LOCAL_NAME) ?: "")
 
         logoutButton.setOnClickListener {
@@ -61,9 +68,10 @@ class ProfileFragment : Fragment() {
     companion object {
 
         @JvmStatic
-        fun newInstance(username: String) = ProfileFragment().apply {
+        fun newInstance(username: String, showMenu: Boolean = false) = ProfileFragment().apply {
             arguments = Bundle().apply {
                 putString(LOCAL_NAME, username)
+                putBoolean(SHOW_MENU, showMenu)
             }
         }
     }

@@ -53,6 +53,6 @@ sealed class PagerFragment(val fragment: (String) -> Fragment, val title: String
 
     object ContactList : PagerFragment({ ContactsListFragment.newInstance(1) }, "Contacts")
 
-    object Profile : PagerFragment({ ProfileFragment.newInstance(it) }, "Profile")
+    object Profile : PagerFragment({ ProfileFragment.newInstance(it, true) }, "Profile")
 
 }
