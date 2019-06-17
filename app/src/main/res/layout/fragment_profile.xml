@@ -33,55 +33,58 @@
                 android:id="@+id/profileName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textSize="35sp"
+                android:padding="10dp"
                 android:layout_gravity="center"
+                android:fontFamily="casual"
                 android:gravity="center"
-                android:text="Name: " />
-
-            <TextView
-                android:id="@+id/profileSurname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="Surname: " />
-
-            <TextView
-                android:id="@+id/profileNumber"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="Phone number: " />
-
-            <TextView
-                android:id="@+id/profileEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="Email: " />
-
-            <TextView
-                android:id="@+id/profileLocation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="Location: " />
+                android:textStyle="bold"
+                android:textColor="#4a395b"
+                android:text="Maciej Koperek" />
 
             <TextView
                 android:id="@+id/profileDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
+                android:padding="15dp"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="Location: " />
+                android:fontFamily="casual"
+                android:textStyle="italic"
+                android:text="Nie jestem taki jak inny." />
+
+
+            <TextView
+                android:id="@+id/profileNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:fontFamily="casual"
+                android:text="+48 537 390 930" />
+
+            <TextView
+                android:id="@+id/profileEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:fontFamily="casual"
+                android:text="maciej@koperek.com" />
+
+            <TextView
+                android:id="@+id/profileLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:fontFamily="casual"
+                android:text="Kielce" />
+
 
         </LinearLayout>
 
@@ -98,6 +101,9 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:fontFamily="casual"
+            android:background="@color/green"
+            android:layout_marginHorizontal="5dp"
             android:text="edit" />
 
         <Button
@@ -105,6 +111,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="casual"
+            android:background="@color/green"
+            android:layout_marginHorizontal="5dp"
             android:text="settings" />
 
         <Button
@@ -112,6 +121,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="casual"
+            android:background="@color/green"
+            android:layout_marginHorizontal="5dp"
             android:text="logout" />
 
     </LinearLayout>

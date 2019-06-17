@@ -35,12 +35,11 @@ class ProfileFragment : Fragment() {
 
     fun populateFields(contact: Contact) {
         with(contact) {
-            profileName.text = "Name: $name"
-            profileSurname.text = "Surname: $surname"
-            profileNumber.text = "Phone number: $phone"
-            profileEmail.text = "Email: $email"
-            profileLocation.text = "City: $city"
-            profileDescription.text = "Description: $description"
+            profileName.text = "$name $surname"
+            profileDescription.text = description
+            profileNumber.text = phone
+            profileEmail.text = email
+            profileLocation.text = city
             Picasso.with(context).load(image).into(profileImage)
         }
     }
