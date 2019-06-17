@@ -1,5 +1,6 @@
 query Pet($name: String!) {
   Pet(name: $name) {
+    id
     name
     surname
     password
@@ -22,6 +23,7 @@ query Pet($name: String!) {
       inStatus
       outStatus
       from {
+        id
         name
         surname
         email
@@ -33,6 +35,7 @@ query Pet($name: String!) {
       outStatus
       inStatus
       to {
+        id
         name
         surname
         email
@@ -64,5 +67,19 @@ mutation RegisterPet(
     email: $email
   ) {
     name
+  }
+}
+
+mutation Amor(
+  $fromId: ID!,
+  $toId: ID!,
+  $status: RelationStatus!
+) {
+  createPetRelation(
+    fromId: $fromId,
+    toId: $toId,
+    inStatus: $status
+  ) {
+    id
   }
 }

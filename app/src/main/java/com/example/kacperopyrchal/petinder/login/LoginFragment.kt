@@ -21,6 +21,7 @@ import javax.inject.Inject
 
 const val PASSWORD = "password"
 const val USERNAME = "username"
+const val ID = "userId"
 
 class LoginFragment : Fragment(), LoginView, BiometricCallback {
 
@@ -74,9 +75,10 @@ class LoginFragment : Fragment(), LoginView, BiometricCallback {
         passwordField.text = SpannableStringBuilder("")
     }
 
-    override fun openHomeScreen(username: String, password: String) {
+    override fun openHomeScreen(username: String, id: String, password: String) {
         val prefs = activity?.getSharedPreferences("pref", Context.MODE_PRIVATE)
         prefs?.edit()
+                ?.putString(ID, id)
                 ?.putString(USERNAME, username)
                 ?.putString(PASSWORD, password)
                 ?.apply()

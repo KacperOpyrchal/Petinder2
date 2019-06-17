@@ -12,7 +12,7 @@ class LoginInteractor @Inject constructor(
         private val apolloClient: ApolloClient
 ) {
 
-    val loginSubject = PublishSubject.create<String>()
+    val loginSubject = PublishSubject.create<Pair<String, String>>()
 
     fun login(username: String) {
         apolloClient.query(
@@ -21,11 +21,12 @@ class LoginInteractor @Inject constructor(
                         .build()
         ).enqueue(object : ApolloCall.Callback<Pet.Data>() {
             override fun onFailure(e: ApolloException) {
-                loginSubject.onNext("")
+                loginSubject.onNext("" to "")
             }
 
             override fun onResponse(response: Response<Pet.Data>) {
-                loginSubject.onNext(response.data()?.Pet()?.password() ?: "")
+                loginSubject.onNext((response.data()?.Pet()?.password()
+                        ?: "") to response.data()?.Pet()!!.id())
             }
         })
     }

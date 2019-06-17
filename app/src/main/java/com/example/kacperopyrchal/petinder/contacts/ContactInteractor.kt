@@ -32,6 +32,7 @@ class ContactInteractor @Inject constructor(
                 inContactsSubject.onNext(response.data()!!.Pet()!!.inRelations()!!.map {
                     with(it.from()!!) {
                         SubContact(
+                                id = id(),
                                 name = name(),
                                 surname = surname(),
                                 image = image() ?: "",
@@ -43,6 +44,7 @@ class ContactInteractor @Inject constructor(
                 outContactsSubject.onNext(response.data()!!.Pet()!!.outRelations()!!.map {
                     with(it.to()!!) {
                         SubContact(
+                                id = id(),
                                 name = name(),
                                 surname = surname(),
                                 image = image() ?: "",

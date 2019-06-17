@@ -19,8 +19,8 @@ class LoginPresenter @Inject constructor(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     view.setProgress(false)
-                    if (it.isNotBlank() && password == it) {
-                        view.openHomeScreen(username, password)
+                    if (it.first.isNotBlank() && password == it.first) {
+                        view.openHomeScreen(username, it.second, password)
                     } else {
                         view.showLoginError()
                     }
@@ -37,7 +37,7 @@ class LoginPresenter @Inject constructor(
 }
 
 interface LoginView {
-    fun openHomeScreen(username: String, password: String)
+    fun openHomeScreen(username: String, id: String, password: String)
     fun openRegistrationScreen()
     fun setProgress(visible: Boolean)
     fun showLoginError()

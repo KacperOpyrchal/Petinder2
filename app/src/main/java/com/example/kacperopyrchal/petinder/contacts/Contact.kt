@@ -21,6 +21,7 @@ data class Contact(
 )
 
 data class SubContact(
+        val id: String,
         val name: String = "Puszok",
         val surname: String = "Nowak",
         val phone: String = "123 456 789",
