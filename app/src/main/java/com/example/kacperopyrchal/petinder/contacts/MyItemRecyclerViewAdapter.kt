@@ -46,9 +46,6 @@ class MyItemRecyclerViewAdapter(
             emailView.text = item.email
             phoneView.text = item.phone
             Picasso.with(context).load(item.image).into(iconView)
-            detailsView.setOnClickListener {
-
-            }
         }
 
         with(holder.view) {
@@ -64,7 +61,6 @@ class MyItemRecyclerViewAdapter(
 
         val nameView: TextView = view.item_name
         val iconView: ImageView = view.item_icon
-        val detailsView: Button = view.item_details
         val emailView: TextView = view.item_email
         val phoneView: TextView = view.item_phone
     }

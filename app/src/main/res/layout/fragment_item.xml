@@ -29,7 +29,8 @@
             android:textSize="18sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="dupa"
+            tools:text="Karol Chomoncik"
+            android:fontFamily="casual"
             android:textAppearance="?attr/textAppearanceListItem" />
 
         <TextView
@@ -37,7 +38,8 @@
             style="@style/itemTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="jaja"
+            android:fontFamily="casual"
+            tools:text="karol.kot@gmail.com"
             android:textAppearance="?attr/textAppearanceListItem" />
 
         <TextView
@@ -45,17 +47,10 @@
             style="@style/itemTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="jaja"
+            android:fontFamily="casual"
+            tools:text="+48 657 567 237"
             android:textAppearance="?attr/textAppearanceListItem" />
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/item_details"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_gravity="center"
-        android:text="O" />
 
 </LinearLayout>
