@@ -2,6 +2,7 @@ package com.example.kacperopyrchal.petinder
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.example.kacperopyrchal.petinder.details.CITY
 import com.example.kacperopyrchal.petinder.details.POINT_X
 import com.example.kacperopyrchal.petinder.details.POINT_Y
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -17,6 +18,7 @@ class GpsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private var x: Double = 0.0
     private var y: Double = 0.0
+    private var city: String = "Krakow"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,8 +26,8 @@ class GpsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         x = intent.getDoubleExtra(POINT_X, 0.0)
         y = intent.getDoubleExtra(POINT_Y, 0.0)
+        city = intent.getStringExtra(CITY)
 
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
                 .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -35,9 +37,8 @@ class GpsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
-        // Add a marker in Sydney and move the camera
-        val sydney = LatLng(x, y)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        val location = LatLng(x, y)
+        mMap.addMarker(MarkerOptions().position(location).title(city))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(location))
     }
 }

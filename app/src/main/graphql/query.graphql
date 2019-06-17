@@ -83,3 +83,30 @@ mutation Amor(
     id
   }
 }
+
+query Recommendation($gender: Gender, $species: Species) {
+  allPets(filter: {
+    gender: $gender,
+    species: $species
+  }) {
+    id
+    name
+        surname
+        password
+        email
+        music
+        video
+        gender
+        species
+        preferredGender
+        preferredSpecies
+        description
+        phone
+        image
+        location {
+          x
+          y
+          city
+        }
+  }
+}

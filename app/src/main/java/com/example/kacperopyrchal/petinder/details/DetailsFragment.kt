@@ -11,11 +11,15 @@ import android.widget.Toast
 import com.example.kacperopyrchal.petinder.DependencyInjector
 import com.example.kacperopyrchal.petinder.R
 import com.example.kacperopyrchal.petinder.adjustColor
+import com.example.kacperopyrchal.petinder.contacts.Contact
+import com.example.kacperopyrchal.petinder.profile.LOCAL_NAME
+import com.squareup.picasso.Picasso
 import com.squareup.seismic.ShakeDetector
 import kotlinx.android.synthetic.main.fragment_details.*
+import type.RelationStatus
 import javax.inject.Inject
 
-class DetailsFragment : Fragment() {
+class DetailsFragment : Fragment(), DetailsView {
 
     @Inject
     lateinit var presenter: DetailsPresenter
@@ -33,8 +37,16 @@ class DetailsFragment : Fragment() {
         lubieButton.adjustColor(R.color.green)
         nielubieButton.adjustColor(R.color.red)
 
+        presenter.onCreate(arguments?.getString(LOCAL_NAME) ?: "", this)
+
         opcjeButton.setOnClickListener {
             presenter.onOptionButtonClicked(this)
+        }
+        lubieButton.setOnClickListener {
+            presenter.react(RelationStatus.Like, this)
+        }
+        nielubieButton.setOnClickListener {
+            presenter.react(RelationStatus.Dislike, this)
         }
 
         val shakeDetector = ShakeDetector {
@@ -45,17 +57,33 @@ class DetailsFragment : Fragment() {
 
     }
 
-    fun openBottomDialog() {
+    override fun openBottomDialog() {
         val bottomDialog = DetailsBottomFragment()
         bottomDialog.show(this@DetailsFragment.fragmentManager, "bottom dialog")
+    }
+
+    override fun showPartner(contact: Contact) {
+        bottomId.visibility = View.VISIBLE
+        Picasso.with(context).load(contact.image).into(partnerImage)
+    }
+
+    override fun showEmptyView() {
+        emptyView.visibility = View.VISIBLE
+        mainView.visibility = View.GONE
+    }
+
+    override fun setProgress(progress: Boolean) {
+        detailsProgress.visibility = if (progress) View.VISIBLE else View.GONE
     }
 
     companion object {
 
         @JvmStatic
-        fun newInstance() =
+        fun newInstance(username: String) =
                 DetailsFragment().apply {
-                    arguments = Bundle()
+                    arguments = Bundle().apply {
+                        putString(LOCAL_NAME, username)
+                    }
                 }
     }
 }

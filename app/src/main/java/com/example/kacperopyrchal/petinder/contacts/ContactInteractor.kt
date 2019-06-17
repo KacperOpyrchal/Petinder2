@@ -6,6 +6,8 @@ import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.api.Response
 import com.apollographql.apollo.exception.ApolloException
 import io.reactivex.subjects.PublishSubject
+import type.Gender
+import type.Species
 import javax.inject.Inject
 
 class ContactInteractor @Inject constructor(
@@ -72,7 +74,13 @@ private fun Pet.Data.contact(): Contact {
                 gender = gender(),
                 species = species(),
                 image = image() ?: "",
-                description = description() ?: ""
+                description = description() ?: "",
+                prefGender = preferredGender() ?: Gender.None,
+                prefSpecies = preferredSpecies() ?: Species.Goose,
+                x = location()?.x() ?: 0.0,
+                y = location()?.y() ?: 0.0,
+                city = location()?.city() ?: "Krakow"
+
         )
     }
 }

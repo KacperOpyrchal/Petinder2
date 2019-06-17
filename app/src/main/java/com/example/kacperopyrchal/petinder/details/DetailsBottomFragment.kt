@@ -19,6 +19,7 @@ import javax.inject.Inject
 
 const val POINT_X = "POINT_X"
 const val POINT_Y = "POINT_Y"
+const val CITY = "CITY"
 
 class DetailsBottomFragment : BottomSheetDialogFragment(), DetailsBottomView {
 
@@ -71,10 +72,11 @@ class DetailsBottomFragment : BottomSheetDialogFragment(), DetailsBottomView {
         }
     }
 
-    override fun openGps() {
+    override fun openGps(x: Double, y: Double, city: String) {
         val intent = Intent(activity, GpsActivity::class.java)
-        intent.putExtra(POINT_X, -34.0)
-        intent.putExtra(POINT_Y, 151.0)
+        intent.putExtra(POINT_X, x)
+        intent.putExtra(POINT_Y, y)
+        intent.putExtra(CITY, city)
         startActivity(intent)
     }
 

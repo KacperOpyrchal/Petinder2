@@ -7,48 +7,94 @@
     android:backgroundTintMode="multiply"
     tools:context=".details.DetailsFragment">
 
-    <ImageView
+    <FrameLayout
+        android:id="@+id/mainView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/partnerImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:text="@string/hello_blank_fragment"
+            tools:src="@drawable/bonifacy" />
+
+        <LinearLayout
+            android:id="@+id/bottomId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="20dp"
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:weightSum="7"
+            tools:visibility="visible">
+
+            <Button
+                android:id="@+id/lubieButton"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="3"
+                android:text="FAJNY KOCUR"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/opcjeButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:text="^"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/nielubieButton"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="3"
+                android:text="NIE LUBIE"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+
+    </FrameLayout>
+
+    <ProgressBar
+        android:id="@+id/detailsProgress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RelativeLayout
+        android:id="@+id/emptyView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        android:src="@drawable/bonifacy"
-        android:text="@string/hello_blank_fragment" />
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:padding="20dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="20dp"
-        android:gravity="bottom"
-        android:orientation="horizontal"
-        android:weightSum="7">
-
-        <Button
-            android:id="@+id/lubieButton"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_weight="3"
-            android:text="FAJNY KOCUR"
-            android:textColor="@color/white" />
-
-        <Button
-            android:id="@+id/opcjeButton"
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/noMore"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="bottom"
-            android:textSize="24sp"
-            android:text="^" />
+            android:layout_centerInParent="true"
+            android:textSize="32sp"
+            android:gravity="center"
+            android:text="No more recommendations :(" />
 
         <Button
-            android:id="@+id/nielubieButton"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_weight="3"
-            android:text="NIE LUBIE"
-            android:textColor="@color/white" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/noMore"
+            android:gravity="center"
+            android:backgroundTint="@color/blue"
+            android:textSize="30sp"
+            android:layout_centerHorizontal="true"
+            android:text="refresh" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </FrameLayout>

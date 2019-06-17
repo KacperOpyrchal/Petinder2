@@ -49,7 +49,7 @@ class MainPagerAdapter(fragmentManager: FragmentManager, private val name: Strin
 
 sealed class PagerFragment(val fragment: (String) -> Fragment, val title: String) {
 
-    object Details : PagerFragment({ DetailsFragment.newInstance() }, "Explore")
+    object Details : PagerFragment({ DetailsFragment.newInstance(it) }, "Explore")
 
     object ContactList : PagerFragment({ ContactsListFragment.newInstance(1) }, "Contacts")
 
