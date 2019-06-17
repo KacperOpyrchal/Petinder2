@@ -39,7 +39,7 @@
                 android:fontFamily="casual"
                 android:gravity="center"
                 android:textStyle="bold"
-                android:textColor="#1a052e"
+                android:textColor="#4a395b"
                 android:text="Maciej Koperek" />
 
             <TextView
@@ -102,6 +102,8 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:fontFamily="casual"
+            android:background="@color/green"
+            android:layout_marginHorizontal="5dp"
             android:text="edit" />
 
         <Button
@@ -110,6 +112,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="casual"
+            android:background="@color/green"
+            android:layout_marginHorizontal="5dp"
             android:text="settings" />
 
         <Button
@@ -118,6 +122,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="casual"
+            android:background="@color/green"
+            android:layout_marginHorizontal="5dp"
             android:text="logout" />
 
     </LinearLayout>
