@@ -51,6 +51,7 @@ class DetailsFragment : Fragment(), DetailsView {
 
         val shakeDetector = ShakeDetector {
             Toast.makeText(context, "Shake :D", Toast.LENGTH_LONG).show()
+            presenter.react(RelationStatus.Dislike, this)
         }
 
         shakeDetector.start(activity!!.getSystemService(SENSOR_SERVICE) as SensorManager)

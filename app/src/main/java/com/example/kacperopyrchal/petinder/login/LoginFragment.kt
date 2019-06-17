@@ -8,6 +8,7 @@ import android.text.SpannableStringBuilder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Toast
 import com.example.kacperopyrchal.petinder.DependencyInjector
 import com.example.kacperopyrchal.petinder.R
@@ -44,6 +45,8 @@ class LoginFragment : Fragment(), LoginView, BiometricCallback {
         registerButton.adjustColor(R.color.blue)
 
         loginButton.setOnClickListener {
+            activity?.window?.setSoftInputMode(
+                    WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
             presenter.onLoginClick(this, usernameField.text.toString(), passwordField.text.toString())
         }
 

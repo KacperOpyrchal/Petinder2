@@ -6,9 +6,11 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.kacperopyrchal.petinder.CurrentUser
 import com.example.kacperopyrchal.petinder.DependencyInjector
 import com.example.kacperopyrchal.petinder.R
 import com.example.kacperopyrchal.petinder.contacts.Contact
+import com.example.kacperopyrchal.petinder.details.DetailsBottomFragment
 import com.example.kacperopyrchal.petinder.login.LoginActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -34,6 +36,7 @@ class ProfileFragment : Fragment() {
     }
 
     fun populateFields(contact: Contact) {
+        CurrentUser.currentPartner = contact
         with(contact) {
             profileName.text = "$name $surname"
             profileDescription.text = description
@@ -53,6 +56,7 @@ class ProfileFragment : Fragment() {
             editButton.visibility = View.GONE
             logoutButton.visibility = View.GONE
             settingsButton.visibility = View.GONE
+            detailsButton.visibility = View.VISIBLE
         }
 
         presenter.onCreate(this, arguments?.getString(LOCAL_NAME) ?: "")
@@ -61,6 +65,11 @@ class ProfileFragment : Fragment() {
             val intent = Intent(activity, LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
+        }
+
+        detailsButton.setOnClickListener {
+            val bottomDialog = DetailsBottomFragment()
+            bottomDialog.show(this@ProfileFragment.fragmentManager, "bottom dialog")
         }
     }
 

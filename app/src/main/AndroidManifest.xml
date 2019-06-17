@@ -2,16 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.kacperopyrchal.petinder">
 
-    <!--
-         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
-         Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the 'MyLocation' functionality.
-    -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -44,6 +40,16 @@
         <activity
             android:name=".profile.ProfileActivity"
             android:windowSoftInputMode="adjustPan" />
+
+        <service android:name=".NotificationsService" />
+
+        <receiver
+            android:name=".LikeReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.project.ActionSetter"></action>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

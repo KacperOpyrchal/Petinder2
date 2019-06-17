@@ -20,7 +20,7 @@ class ContactsListPresenter @Inject constructor(
                 BiFunction { inContacts: List<SubContact>, outContacts: List<SubContact> ->
                     val result = inContacts.toMutableList()
                     result.addAll(outContacts)
-                    result
+                    result.distinctBy { it.name }
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

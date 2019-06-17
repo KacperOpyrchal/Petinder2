@@ -26,7 +26,7 @@ class LoginInteractor @Inject constructor(
 
             override fun onResponse(response: Response<Pet.Data>) {
                 loginSubject.onNext((response.data()?.Pet()?.password()
-                        ?: "") to response.data()?.Pet()!!.id())
+                        ?: "") to (response.data()?.Pet()?.id() ?: ""))
             }
         })
     }

@@ -20,4 +20,5 @@ interface ApplicationComponent {
     fun inject(fragment: RegistrationFragment)
     fun inject(fragment: ContactsListFragment)
     fun inject(fragment: ProfileFragment)
+    fun inject(service: NotificationsService)
 }

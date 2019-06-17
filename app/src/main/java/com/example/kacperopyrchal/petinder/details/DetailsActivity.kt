@@ -1,12 +1,16 @@
 package com.example.kacperopyrchal.petinder.details
 
+import android.app.AlarmManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v7.app.AppCompatActivity
 import android.view.Window
+import com.example.kacperopyrchal.petinder.LikeReceiver
 import com.example.kacperopyrchal.petinder.R
 import com.example.kacperopyrchal.petinder.contacts.ContactsListFragment
 import com.example.kacperopyrchal.petinder.details.PagerFragment.ContactList
@@ -14,6 +18,7 @@ import com.example.kacperopyrchal.petinder.details.PagerFragment.Profile
 import com.example.kacperopyrchal.petinder.login.USERNAME
 import com.example.kacperopyrchal.petinder.profile.ProfileFragment
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class DetailsActivity : AppCompatActivity() {
 
@@ -30,6 +35,11 @@ class DetailsActivity : AppCompatActivity() {
         sliding_tabs.setupWithViewPager(viewPager)
         viewPager.adapter = MainPagerAdapter(supportFragmentManager, prefs.getString(USERNAME, ""))
         viewPager.offscreenPageLimit = 5
+
+        val ll24 = Intent(this, LikeReceiver::class.java)
+        val recurringLl24 = PendingIntent.getBroadcast(this, 0, ll24, PendingIntent.FLAG_CANCEL_CURRENT)
+        val alarms = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarms.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 10000L, AlarmManager.INTERVAL_HOUR, recurringLl24)
     }
 }
 

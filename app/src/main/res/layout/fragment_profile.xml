@@ -128,4 +128,14 @@
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/detailsButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="casual"
+        android:visibility="gone"
+        android:background="@color/green"
+        android:layout_marginHorizontal="5dp"
+        android:text="details" />
+
 </LinearLayout>

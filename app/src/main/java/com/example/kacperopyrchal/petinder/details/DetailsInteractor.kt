@@ -58,7 +58,7 @@ class DetailsInteractor @Inject constructor(
 
 private fun Recommendation.AllPet.contact(): Contact {
     return Contact(
-            id = "123",
+            id = id(),
             name = name(),
             surname = surname(),
             phone = phone() ?: "",
