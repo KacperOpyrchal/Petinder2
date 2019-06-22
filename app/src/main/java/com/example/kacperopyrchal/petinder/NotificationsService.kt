@@ -1,6 +1,7 @@
 package com.example.kacperopyrchal.petinder
 
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.app.Service
 import android.content.Context
 import android.content.Intent
@@ -9,6 +10,7 @@ import android.support.v4.app.NotificationCompat
 import com.example.kacperopyrchal.petinder.contacts.ContactInteractor
 import com.example.kacperopyrchal.petinder.details.DetailsInteractor
 import com.example.kacperopyrchal.petinder.details.sub
+import com.example.kacperopyrchal.petinder.login.LoginActivity
 import com.example.kacperopyrchal.petinder.login.USERNAME
 import io.reactivex.disposables.Disposables
 import javax.inject.Inject
@@ -50,16 +52,26 @@ class NotificationsService : Service() {
     }
 
     private fun triggerNotification() {
+        val id = 1
         val builder = NotificationCompat.Builder(this)
+        val loginIntent = Intent(applicationContext, LoginActivity::class.java)
+        loginIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         builder.setContentText("New opportunities awaits!")
                 .setContentTitle("Explore our platform!")
+                .setContentIntent(
+                        PendingIntent.getActivity(applicationContext,
+                                id,
+                                loginIntent,
+                                PendingIntent.FLAG_UPDATE_CURRENT
+                        )
+                )
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
 
         val mNotificationManager =
                 getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-        mNotificationManager.notify(1, builder.build())
+        mNotificationManager.notify(id, builder.build())
     }
 
     override fun onBind(intent: Intent): IBinder? {
